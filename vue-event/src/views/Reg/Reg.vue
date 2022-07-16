@@ -67,6 +67,12 @@ export default {
       this.$refs.regForm.validate(async valid => {
         if (!valid) return
         const { data: res } = await this.$http.post('/api/reg', this.regForm)
+        if (res.code !== 0) return this.$message.error(res.message)
+        this.$message({
+          message: 'res.message',
+          type: 'success'
+        })
+        this.$router.push('/Login')
       })
     }
   }
