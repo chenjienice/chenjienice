@@ -64,9 +64,9 @@ export default {
     regHandler() {
       // 1.绑定事件
       // 2.校验数据
-      this.$refs.regForm.validate((valid) => {
-        if (valid === false) return
-        this.$http.post('')
+      this.$refs.regForm.validate(async valid => {
+        if (!valid) return
+        const { data: res } = await this.$http.post('/api/reg', this.regForm)
       })
     }
   }
